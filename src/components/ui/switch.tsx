@@ -20,10 +20,11 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           className={cn("peer sr-only", className)}
           {...props}
         />
-        <div className="peer-checked:bg-primary peer-unchecked:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:peer-unchecked:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none peer-focus-visible:ring-[3px] peer-disabled:cursor-not-allowed peer-disabled:opacity-50">
+        <div className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out data-[state=checked]:bg-[#228BE6] data-[state=unchecked]:bg-[#373A40]" data-state={props.checked ? "checked" : "unchecked"}>
           <div
             data-slot="switch-thumb"
-            className="bg-background dark:peer-unchecked:bg-foreground dark:peer-checked:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform peer-checked:translate-x-[calc(100%-2px)] peer-unchecked:translate-x-0"
+            className="pointer-events-none block h-4 w-4 rounded-full bg-white shadow transition-transform duration-200 ease-in-out data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+            data-state={props.checked ? "checked" : "unchecked"}
           />
         </div>
       </label>

@@ -5,15 +5,15 @@ import { Header } from "@/components/header";
 
 export default function BuilderPage() {
   return (
-    <>
+    <div className="h-screen flex flex-col overflow-hidden">
       <Header />
-      <div className="flex h-screen">
+      <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 flex flex-col overflow-hidden">
+        <main className="flex-1 flex flex-col overflow-auto">
           <FormBuilderCanvas />
         </main>
         <PropertyPanel />
       </div>
-    </>
+    </div>
   );
 }

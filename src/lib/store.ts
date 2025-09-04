@@ -31,6 +31,7 @@ export interface Field {
 
 export interface FormState {
   fields: Field[];
+  formName: string;
   selectedFieldId: string | null;
   isPreviewMode: boolean;
   addField: (field: Omit<Field, 'id'>) => void;
@@ -40,12 +41,14 @@ export interface FormState {
   selectField: (id: string | null) => void;
   togglePreviewMode: () => void;
   clearForm: () => void;
+  setFormName: (name: string) => void;
 }
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
 export const useFormStore = create<FormState>((set, get) => ({
   fields: [],
+  formName: "Untitled Form",
   selectedFieldId: null,
   isPreviewMode: false,
   
@@ -82,5 +85,9 @@ export const useFormStore = create<FormState>((set, get) => ({
     fields: [], 
     selectedFieldId: null,
     isPreviewMode: false,
+    formName: "Untitled Form"
+  }),
+
+  setFormName: (name) => set({ formName: name
   }),
 }));

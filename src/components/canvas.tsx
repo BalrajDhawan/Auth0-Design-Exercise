@@ -80,21 +80,35 @@ const FormBuilderCanvas = () => {
       
       <div 
         className="flex-1 overflow-auto transition-all duration-300"
+        // below needs to change for showing appropriate animation?
         style={{ 
-          background: isDragOver 
-            ? 'linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%)' 
-            : 'linear-gradient(135deg, #f9fafb 0%, #e0e7ff 100%)'
+          // background: isDragOver 
+          //   ? 'linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%)' 
+          //   : 'linear-gradient(135deg, #f9fafb 0%, #e0e7ff 100%)'
         }}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <div className="max-w-5xl mx-auto p-8">
+        <div className="max-w-5xl mx-auto pt-4 pb-8 pl-8 pr-8">
+          {/* Form Name Input */}
+          <div className="mb-6">
+            <input
+              type="text"
+              value={useFormStore.getState().formName}
+              onChange={(e) => useFormStore.getState().setFormName(e.target.value)}
+              className="text-xl font-bold text-[var(--text-primary)] bg-transparent border-none outline-none w-full px-2 py-1 rounded-md transition-colors duration-200 border-0"
+              style={{ caretColor: '#4F46E5' }}
+            />
+          </div>
+
           {/* Canvas Header */}
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center space-x-6">
+            {/* <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ 
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  }}>
                   <FileText className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -110,17 +124,17 @@ const FormBuilderCanvas = () => {
                 </div>
               </div>
               
-              {!isPreviewMode && (
+              {/* {!isPreviewMode && (
                 <div className="flex items-center space-x-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200">
                   <Layers className="w-4 h-4 text-blue-600" />
                   <span className="text-sm font-medium text-gray-700">
                     {fields.length} field{fields.length !== 1 ? 's' : ''}
                   </span>
                 </div>
-              )}
-            </div>
+              )} 
+            </div> */}
             
-            <div className="flex items-center space-x-3">
+            {/* <div className="flex items-center space-x-3">
               {!isPreviewMode && fields.length > 0 && (
                 <Button
                   variant="outline"
@@ -138,15 +152,16 @@ const FormBuilderCanvas = () => {
                 size="sm"
                 onClick={togglePreviewMode}
                 className="transition-all duration-200"
-                style={isPreviewMode ? {
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  color: 'white',
-                  boxShadow: '0 0 20px rgba(59, 130, 246, 0.15)'
-                } : {
-                  borderColor: '#d1d5db',
-                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                  backdropFilter: 'blur(8px)'
-                }}
+              //   style={isPreviewMode ? {
+              //   //   background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              //   //   color: 'white',
+              //   //   boxShadow: '0 0 20px rgba(59, 130, 246, 0.15)'
+              //   // } : {
+              //   //   borderColor: '#d1d5db',
+              //   //   backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              //   //   backdropFilter: 'blur(8px)'
+              //   // }
+              // }
               >
                 {isPreviewMode ? (
                   <>
@@ -160,7 +175,7 @@ const FormBuilderCanvas = () => {
                   </>
                 )}
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Form Canvas */}
@@ -168,17 +183,18 @@ const FormBuilderCanvas = () => {
             {fields.length === 0 ? (
               <Card className="p-16 text-center border-2 border-dashed transition-all duration-300" style={{
                 borderColor: isDragOver ? '#60a5fa' : '#d1d5db',
-                backgroundColor: isDragOver ? 'rgba(219, 234, 254, 0.5)' : 'rgba(255, 255, 255, 0.8)',
+                // backgroundColor: isDragOver ? 'rgba(219, 234, 254, 0.5)' : 'rgba(255, 255, 255, 0.8)',
                 backdropFilter: 'blur(8px)',
                 boxShadow: isDragOver ? '0 0 20px rgba(59, 130, 246, 0.15)' : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
               }}>
                 <div className="max-w-md mx-auto">
                   <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300" style={{
-                    background: isDragOver 
-                      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                      : 'linear-gradient(135deg, #dbeafe, #e9d5ff)',
-                    boxShadow: isDragOver ? '0 0 20px rgba(59, 130, 246, 0.15)' : 'none',
-                    transform: isDragOver ? 'scale(1.1)' : 'scale(1)'
+                    // check if you need some animation here?
+                    // background: isDragOver 
+                    //   ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                    //   : 'linear-gradient(135deg, #dbeafe, #e9d5ff)',
+                    // boxShadow: isDragOver ? '0 0 20px rgba(59, 130, 246, 0.15)' : 'none',
+                    // transform: isDragOver ? 'scale(1.1)' : 'scale(1)'
                   }}>
                     {isDragOver ? (
                       <Wand2 className="w-10 h-10 text-white" />
@@ -186,7 +202,7 @@ const FormBuilderCanvas = () => {
                       <Plus className="w-10 h-10 text-blue-600" />
                     )}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  <h3 className="text-xl font-semibold text-[var(--text-secondary)] mb-3">
                     {isDragOver 
                       ? "Drop to add component" 
                       : isPreviewMode 
@@ -216,10 +232,14 @@ const FormBuilderCanvas = () => {
                 {fields.map((field, index) => (
                   <div
                     key={field.id}
-                    className="transition-all duration-300"
+                    className={`transition-all duration-300 border-2 rounded-lg ${
+                      selectedFieldId === field.id && !isPreviewMode
+                        ? 'border-blue-600'
+                        : 'border-transparent'
+                    }`}
                     style={{
                       transform: selectedFieldId === field.id && !isPreviewMode 
-                        ? 'scale(1.02)' 
+                        ? 'scale(1.01)' 
                         : 'scale(1)'
                     }}
                   >

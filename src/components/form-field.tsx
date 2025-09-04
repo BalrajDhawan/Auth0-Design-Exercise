@@ -60,7 +60,7 @@ export const FormField = ({
             type="text"
             placeholder={field.placeholder}
             disabled={isPreviewMode}
-            className="w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+            className="w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500 border-0"
           />
         );
       
@@ -70,7 +70,7 @@ export const FormField = ({
             type="email"
             placeholder={field.placeholder}
             disabled={isPreviewMode}
-            className="w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+            className="w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500 border-0"
           />
         );
       
@@ -82,7 +82,7 @@ export const FormField = ({
             disabled={isPreviewMode}
             min={field.validation?.min}
             max={field.validation?.max}
-            className="w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+            className="w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500 border-0"
           />
         );
       
@@ -91,14 +91,14 @@ export const FormField = ({
           <Textarea
             placeholder={field.placeholder}
             disabled={isPreviewMode}
-            className="w-full min-h-[80px] resize-none bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+            className="w-full min-h-[80px] resize-none bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500 border-0"
           />
         );
       
       case "select":
         return (
           <Select>
-            <SelectTrigger className={`w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500 ${
+            <SelectTrigger className={`w-full bg-white/80 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-blue-500 border-0 ${
               isPreviewMode ? 'opacity-50 cursor-not-allowed' : ''
             }`}>
               <SelectValue placeholder={field.placeholder || "Select an option"} />
@@ -115,7 +115,7 @@ export const FormField = ({
       
       case "checkbox":
         return (
-          <div className="flex items-center space-x-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-gray-200">
+          <div className="flex items-center space-x-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-gray-200 !bg-[#1f262e] border-0">
             <Checkbox disabled={isPreviewMode} />
             <Label className="text-sm text-gray-700 font-medium">
               {field.placeholder || "Check this option"}
@@ -128,7 +128,7 @@ export const FormField = ({
           <RadioGroup>
             <div className="space-y-3">
               {field.options?.map((option) => (
-                <div key={option.id} className="flex items-center space-x-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-gray-200">
+                <div key={option.id} className="flex items-center space-x-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-gray-200 !bg-[#1f262e] !border-[var(--border-color)]">
                   <RadioGroupItem 
                     value={option.value} 
                     id={option.id} 
@@ -153,7 +153,7 @@ export const FormField = ({
   if (isPreviewMode) {
     return (
       <div className="space-y-3 p-6 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200" style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
-        <Label className="text-sm font-semibold text-gray-900 flex items-center space-x-2">
+        <Label className="text-sm font-semibold flex items-center space-x-2">
           <span>{field.label}</span>
           {field.required && <span className="text-red-500 text-lg">*</span>}
         </Label>
@@ -164,37 +164,28 @@ export const FormField = ({
 
   return (
     <Card
-      className="p-6 cursor-pointer transition-all duration-300 hover:shadow-lg"
-      style={{
-        borderColor: isSelected ? '#3b82f6' : '#e5e7eb',
-        backgroundColor: isSelected 
-          ? 'rgba(219, 234, 254, 0.8)' 
-          : 'rgba(255, 255, 255, 0.8)',
-        backdropFilter: 'blur(8px)',
-        boxShadow: isSelected 
-          ? '0 0 20px rgba(59, 130, 246, 0.15)' 
-          : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-        borderWidth: isSelected ? '2px' : '1px'
-      }}
+      className={`p-6 cursor-pointer transition-all duration-300 bg-[#1f262e] hover:bg-[#2c3540] rounded-lg ${
+        isSelected ? 'border-2 border-blue-600' : 'border border-transparent hover:border-[var(--primary-color)]'
+      }`}
       onClick={onSelect}
     >
       <div className="flex items-start space-x-4">
-        <div className="flex-shrink-0 pt-1">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300" style={{
-            background: isSelected 
-              ? 'linear-gradient(135deg, #3b82f6, #8b5cf6)' 
-              : 'linear-gradient(135deg, #dbeafe, #e9d5ff)',
-            color: isSelected ? 'white' : '#3b82f6',
-            boxShadow: isSelected ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
+        {/* <div className="flex-shrink-0 pt-1">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 text-blue-600" style={{
+            // background: isSelected 
+            //   ? 'linear-gradient(135deg, #3b82f6, #8b5cf6)' 
+            //   : 'linear-gradient(135deg, #dbeafe, #e9d5ff)',
+            // color: isSelected ? 'white' : '#3b82f6',
+            // boxShadow: isSelected ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
           }}>
             {getFieldIcon(field.type)}
           </div>
-        </div>
+        </div> */}
         
         <div className="flex-1 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Label className="text-base font-semibold text-gray-900">
+              <Label className="text-base font-semibold">
                 {field.label}
               </Label>
               {field.required && (
@@ -202,6 +193,13 @@ export const FormField = ({
                   Required
                 </span>
               )}
+              {field.validation && (
+                <div className="flex items-center space-x-1 text-blue-600">
+                  <AlertCircle className="w-3 h-3" />
+                  <span>Validation</span>
+                </div>
+              )}
+  
             </div>
             
             <div className="flex items-center space-x-2">
@@ -234,22 +232,15 @@ export const FormField = ({
             {renderField()}
           </div>
           
-          <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
-            <div className="flex items-center space-x-2">
-              <span className="capitalize font-medium">{field.type} field</span>
-              {field.validation && (
-                <div className="flex items-center space-x-1 text-blue-600">
-                  <AlertCircle className="w-3 h-3" />
-                  <span>Validation</span>
-                </div>
-              )}
-            </div>
-            {field.placeholder && (
-              <span className="truncate max-w-32 text-gray-400">"{field.placeholder}"</span>
-            )}
-          </div>
         </div>
       </div>
     </Card>
   );
 };
+
+
+/**
+ * 
+ * border border-transparent bg-[#1f262e] hover:border-[var(--primary-color)] hover:bg-[#2c3540]
+ * 
+ */
