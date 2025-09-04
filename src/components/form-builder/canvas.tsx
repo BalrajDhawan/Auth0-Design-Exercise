@@ -1,8 +1,9 @@
 "use client";
 
 import { Header } from "@/components/header";
-import { FormField } from "@/components/form-field";
-import { useFormStore, FieldType } from "@/lib/store";
+import { FormField } from "@/components/form-builder/form-field";
+import { useFormStore } from "@/lib/store";
+import { FieldType } from "@/lib/types/form";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 

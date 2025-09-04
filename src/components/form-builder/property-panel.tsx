@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormStore, Field } from "@/lib/store";
+import { useFormStore } from "@/lib/store";
+import { Field } from "@/lib/types/form";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

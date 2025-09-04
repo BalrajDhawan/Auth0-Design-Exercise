@@ -1,6 +1,6 @@
-import { FormBuilderCanvas } from "@/components/canvas";
-import { Sidebar } from "@/components/sidebar";
-import { PropertyPanel } from "@/components/property-panel";
+import { FormBuilderCanvas } from "@/components/form-builder/canvas";
+import { Sidebar } from "@/components/form-builder/sidebar";
+import { PropertyPanel } from "@/components/form-builder/property-panel";
 import { Header } from "@/components/header";
 
 export default function BuilderPage() {

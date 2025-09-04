@@ -1,8 +1,17 @@
 # FormKit - Visual Form Builder
 
-A beautiful, modern visual form builder that allows users to create custom forms by dragging and dropping components, configuring their properties, and instantly previewing the result.
+A modern, type-safe visual form builder built with Next.js 15 and React 19. Create beautiful forms with an intuitive drag-and-drop interface, real-time preview, and extensive customization options.
 
-## ✨ Features
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js 15.3](https://nextjs.org) with App Router
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **State Management:** [Zustand](https://github.com/pmndrs/zustand)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com)
+- **Icons:** [Lucide Icons](https://lucide.dev)
+
+## 📁 Project Structure
 
 ### 🎨 Visual Design & Polish
 - **Modern, cohesive design system** with consistent spacing, typography, and color palette
@@ -85,19 +94,38 @@ npm run dev
 
 ## 🏗️ Architecture
 
-### Tech Stack
-- **Next.js 15.3** with App Router
-- **React 19** with TypeScript
-- **Tailwind CSS 4** for styling
-- **Zustand** for state management
-- **Lucide React** for icons
-- **shadcn/ui** component library
-
-### Project Structure
 ```
 src/
-├── app/
-│   ├── layout.tsx          # Root layout
+├── app/                      # Next.js App Router pages
+│   ├── layout.tsx           # Root layout
+│   ├── page.tsx             # Home page
+│   └── builder/
+│       └── page.tsx         # Form builder page
+├── components/
+│   ├── ui/                  # Reusable UI components
+│   └── form-builder/        # Form builder specific components
+│       ├── canvas.tsx       # Form builder canvas
+│       ├── sidebar.tsx      # Component sidebar
+│       ├── property-panel.tsx # Property editor
+│       └── form-field.tsx   # Form field component
+├── lib/
+│   ├── store.ts            # Zustand store
+│   ├── utils.ts            # Utility functions
+│   ├── constants/          # Constants and configurations
+│   ├── hooks/              # Custom React hooks
+│   └── types/              # TypeScript type definitions
+└── styles/
+    └── globals.css         # Global styles
+```
+
+## ✨ Features
+
+### Visual Form Building
+- 🎨 Modern design system with consistent styling
+- 🖱️ Intuitive drag-and-drop interface
+- 👁️ Real-time form preview
+- ⚡ Instant field updates
+- 🎯 Multiple field types with custom configurations
 │   ├── page.tsx            # Beautiful home page
 │   └── builder/
 │       └── page.tsx        # Three-panel builder interface

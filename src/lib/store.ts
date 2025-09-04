@@ -1,56 +1,11 @@
 import { create } from "zustand";
-
-export type FieldType = 
-  | "text" 
-  | "textarea" 
-  | "select" 
-  | "checkbox" 
-  | "radio" 
-  | "number" 
-  | "email";
-
-export interface FieldOption {
-  id: string;
-  label: string;
-  value: string;
-}
-
-export interface Field {
-  id: string;
-  type: FieldType;
-  label: string;
-  placeholder?: string;
-  required: boolean;
-  options?: FieldOption[]; // For select and radio fields
-  validation?: {
-    min?: number;
-    max?: number;
-    pattern?: string;
-  };
-}
-
-export interface FormState {
-  fields: Field[];
-  formName: string;
-  selectedFieldId: string | null;
-  isPreviewMode: boolean;
-  addField: (field: Omit<Field, 'id'>) => void;
-  updateField: (id: string, updates: Partial<Field>) => void;
-  removeField: (id: string) => void;
-  reorderFields: (fromIndex: number, toIndex: number) => void;
-  selectField: (id: string | null) => void;
-  togglePreviewMode: () => void;
-  clearForm: () => void;
-  setFormName: (name: string) => void;
-}
+import { Field, FormState } from "./types/form";
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
-export const useFormStore = create<FormState>((set, get) => ({
+export const useFormStore = create<FormState>((set) => ({
   fields: [],
-  formName: "Untitled Form",
-  selectedFieldId: null,
-  isPreviewMode: false,
+  selectedField: null,
   
   addField: (fieldData) => set((state) => ({
     fields: [...state.fields, { ...fieldData, id: generateId() }],
